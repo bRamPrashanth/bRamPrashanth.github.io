@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>Ram Prashanth Bhujanagaram – Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { DEFAULT: '#0d0d1a', light: '#13132a', lighter: '#1c1c38', border: '#2a2a4a' },
+                        accent: { indigo: '#8b5cf6', cyan: '#10b981' },
+                    },
+                    fontFamily: {
+                        display: ['Inter', 'system-ui', 'sans-serif'],
+                        body: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --navy: #0d0d1a;
+            --navy-light: #13132a;
+            --navy-lighter: #1c1c38;
+            --navy-border: #2a2a4a;
+            --accent-indigo: #8b5cf6;
+            --accent-cyan: #10b981;
+            --gradient: linear-gradient(135deg, #8b5cf6, #10b981);
+            --gradient-hover: linear-gradient(135deg, #a78bfa, #34d399);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(135deg, #0d0d1a 0%, #120c22 50%, #0d1a2a 100%); background-attachment: fixed; color: #e2e8f0; overflow-x: hidden; }
+
+        /* Gradient text */
+        .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        /* Gradient bar under headings */
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+            margin-top: 12px;
+        }
+        .section-heading-center::after { margin-left: auto; margin-right: auto; }
+
+        /* Gradient button */
+        .btn-gradient {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 9999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-gradient:hover { background: var(--gradient-hover); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3); }
+
+        .btn-outline {
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            color: #d8b4fe;
+            padding: 12px 28px;
+            border-radius: 9999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+        }
+        .btn-outline:hover { border-color: var(--accent-indigo); background: rgba(139, 92, 246, 0.1); transform: translateY(-2px); }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(13, 13, 26, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(42, 42, 74, 0.5);
+        }
+        .nav-link { color: #94a3b8; transition: color 0.3s; position: relative; }
+        .nav-link:hover, .nav-link.active { color: #e2e8f0; }
+        .nav-link.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--gradient); border-radius: 1px; }
+
+        /* Hero mesh bg */
+        .hero-mesh {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+        .hero-mesh::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 600px 600px at 20% 50%, rgba(139, 92, 246, 0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 500px at 80% 30%, rgba(16, 185, 129, 0.14) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 400px at 60% 80%, rgba(139, 92, 246, 0.10) 0%, transparent 70%);
+            animation: meshPulse 8s ease-in-out infinite alternate;
+        }
+        @keyframes meshPulse {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+        .hero-mesh::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, var(--navy) 100%);
+        }
+
+        /* Floating badges */
+        .floating-badge {
+            position: absolute;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: rgba(19, 19, 42, 0.8);
+            backdrop-filter: blur(8px);
+            color: #d8b4fe;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .float-1 { top: 18%; left: 8%; animation: float1 6s ease-in-out infinite; }
+        .float-2 { top: 12%; right: 12%; animation: float2 7s ease-in-out infinite; }
+        .float-3 { top: 35%; left: 5%; animation: float3 5s ease-in-out infinite; }
+        .float-4 { bottom: 30%; right: 8%; animation: float1 8s ease-in-out infinite; }
+        .float-5 { bottom: 25%; left: 15%; animation: float2 6s ease-in-out infinite; }
+        .float-6 { top: 25%; right: 5%; animation: float3 7s ease-in-out infinite; }
+        .float-7 { bottom: 35%; right: 20%; animation: float1 5.5s ease-in-out infinite; }
+        @keyframes float1 { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(2deg); } }
+        @keyframes float2 { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(-2deg); } }
+        @keyframes float3 { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+
+        /* Typewriter */
+        .typewriter-cursor::after { content: '|'; animation: blink 1s infinite; color: var(--accent-cyan); }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Fade in */
+        .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-section.visible { opacity: 1; transform: translateY(0); }
+
+        /* Card hover */
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(139, 92, 246, 0.12); }
+
+        /* Badge */
+        .skill-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            color: #d8b4fe;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .skill-badge:hover { background: rgba(139, 92, 246, 0.25); transform: scale(1.05); box-shadow: 0 0 12px rgba(139, 92, 246, 0.2); }
+
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-indigo), var(--accent-cyan));
+            opacity: 0.3;
+        }
+        @media (min-width: 768px) { .timeline-line { left: 50%; transform: translateX(-50%); } }
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--gradient);
+            border: 3px solid var(--navy);
+            position: absolute;
+            left: 13px;
+            top: 24px;
+            z-index: 2;
+            animation: pulseDot 2s ease-in-out infinite;
+        }
+        @media (min-width: 768px) { .timeline-dot { left: 50%; transform: translateX(-50%); } }
+        @keyframes pulseDot { 0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); } 50% { box-shadow: 0 0 0 8px rgba(139, 92, 246, 0); } }
+
+        /* Filter button */
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--navy-border);
+            background: var(--navy-light);
+            color: #94a3b8;
+        }
+        .filter-btn:hover { border-color: rgba(139, 92, 246, 0.5); color: #e2e8f0; }
+        .filter-btn.active {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: var(--navy-lighter);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 16px 24px;
+            border-radius: 12px;
+            color: #e2e8f0;
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--navy); }
+        ::-webkit-scrollbar-thumb { background: #2d2d52; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3d3d62; }
+
+        /* Current badge */
+        .current-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+        }
+
+        /* Stats counter */
+        .stat-number { font-variant-numeric: tabular-nums; }
+
+        /* Mobile menu */
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 13, 26, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            transform: translateX(100%);
+            transition: transform 0.35s ease;
+        }
+        .mobile-menu-overlay.open { transform: translateX(0); }
+    </style>
+</head>
+<body data-id="0">
+    <app-icon data-id="1" hidden data-icon="code-2" data-palette="Dark"></app-icon>
+
+    <!-- NAVBAR -->
+    <header data-id="2" id="navbar-f8k2" class="navbar fixed top-0 left-0 right-0 z-50">
+        <div data-id="3" class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between h-16">
+            <a data-id="4" href="#hero" class="text-lg font-bold gradient-text tracking-tight">RPB</a>
+            <nav data-id="5" id="desktop-nav-a1b2" class="hidden md:flex items-center gap-6">
+                <a data-id="6" href="#hero" class="nav-link text-sm font-medium active" data-nav="hero">Home</a>
+                <a data-id="7" href="#about" class="nav-link text-sm font-medium" data-nav="about">About</a>
+                <a data-id="8" href="#skills" class="nav-link text-sm font-medium" data-nav="skills">Skills</a>
+                <a data-id="9" href="#experience" class="nav-link text-sm font-medium" data-nav="experience">Experience</a>
+                <a data-id="10" href="#education" class="nav-link text-sm font-medium" data-nav="education">Education</a>
+                <a data-id="11" href="#contact" class="nav-link text-sm font-medium" data-nav="contact">Contact</a>
+            </nav>
+            <div data-id="12" class="flex items-center gap-3">
+                <button data-id="13" id="download-resume-btn-c3d4" class="btn-gradient text-sm hidden md:inline-flex">
+                    <i data-id="14" data-lucide="download" class="w-4 h-4"></i>
+                    Download Resume
+                </button>
+                <button data-id="15" id="mobile-menu-btn-e5f6" class="md:hidden p-2 text-gray-300">
+                    <i data-id="16" data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div data-id="17" id="mobile-menu-g7h8" class="mobile-menu-overlay">
+        <div data-id="18" class="flex items-center justify-between mb-10">
+            <span data-id="19" class="text-lg font-bold gradient-text">RPB</span>
+            <button data-id="20" id="mobile-menu-close-i9j0" class="p-2 text-gray-300">
+                <i data-id="21" data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <nav data-id="22" class="flex flex-col gap-6">
+            <a data-id="23" href="#hero" class="text-xl font-semibold text-gray-200 mobile-nav-link">Home</a>
+            <a data-id="24" href="#about" class="text-xl font-semibold text-gray-200 mobile-nav-link">About</a>
+            <a data-id="25" href="#skills" class="text-xl font-semibold text-gray-200 mobile-nav-link">Skills</a>
+            <a data-id="26" href="#experience" class="text-xl font-semibold text-gray-200 mobile-nav-link">Experience</a>
+            <a data-id="27" href="#education" class="text-xl font-semibold text-gray-200 mobile-nav-link">Education</a>
+            <a data-id="28" href="#contact" class="text-xl font-semibold text-gray-200 mobile-nav-link">Contact</a>
+        </nav>
+        <button data-id="29" id="mobile-download-btn-k1l2" class="btn-gradient text-sm mt-10 justify-center">
+            <i data-id="30" data-lucide="download" class="w-4 h-4"></i>
+            Download Resume
+        </button>
+    </div>
+
+    <main data-id="31">
+        <!-- HERO -->
+        <section data-id="32" id="hero" class="hero-mesh flex items-center justify-center relative pt-16">
+            <div data-id="33" class="floating-badge float-1">PHP</div>
+            <div data-id="34" class="floating-badge float-2">Drupal</div>
+            <div data-id="35" class="floating-badge float-3">React</div>
+            <div data-id="36" class="floating-badge float-4">Vue.js</div>
+            <div data-id="37" class="floating-badge float-5">Node.js</div>
+            <div data-id="38" class="floating-badge float-6">AWS</div>
+            <div data-id="39" class="floating-badge float-7">Azure</div>
+            <div data-id="40" class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                <p data-id="41" class="text-sm md:text-base font-medium tracking-widest uppercase text-purple-400 mb-4">Welcome to my portfolio</p>
+                <h1 data-id="42" id="hero-name-m3n4" class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight">
+                    Ram Prashanth<br data-id="43" />Bhujanagaram
+                </h1>
+                <div data-id="44" class="h-8 md:h-10 flex items-center justify-center mb-4">
+                    <span data-id="45" id="typewriter-o5p6" class="text-lg md:text-2xl font-semibold gradient-text typewriter-cursor"></span>
+                </div>
+                <p data-id="46" id="tagline-q7r8" class="text-base md:text-lg text-gray-400 mb-8 max-w-xl mx-auto">14+ Years Building Enterprise Web Experiences</p>
+                <div data-id="47" class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a data-id="48" href="#experience" class="btn-gradient text-sm md:text-base">
+                        <i data-id="49" data-lucide="briefcase" class="w-4 h-4"></i>
+                        View My Work
+                    </a>
+                    <a data-id="50" href="#contact" class="btn-outline text-sm md:text-base">
+                        <i data-id="51" data-lucide="mail" class="w-4 h-4"></i>
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section data-id="52" id="about" class="py-20 md:py-28 px-4 md:px-6 lg:px-8 fade-section">
+            <div data-id="53" class="max-w-6xl mx-auto">
+                <div data-id="54" class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                    <div data-id="55" class="flex-shrink-0">
+                        <div data-id="56" id="avatar-wrapper" style="position:relative; display:inline-block;">
+                            <div data-id="57" style="width:208px;height:208px;border-radius:50%;padding:4px;background:linear-gradient(135deg,#8b5cf6,#10b981);">
+                                <div data-id="58" id="avatar-s9t0" style="width:100%;height:100%;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,#1c1c38,#2a2a4a);display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:900;color:white;letter-spacing:2px;">
+                                    RPB
+                                </div>
+                            </div>
+                            <div data-id="59" style="position:absolute;inset:0;border-radius:50%;box-shadow:0 0 40px rgba(139,92,246,0.35),0 0 80px rgba(16,185,129,0.15);pointer-events:none;"></div>
+                        </div>
+                    </div>
+                    <div data-id="60" class="flex-1 text-center md:text-left">
+                        <h2 data-id="61" id="about-heading-u1v2" class="text-2xl md:text-3xl font-bold text-white section-heading mb-6">About Me</h2>
+                        <p data-id="62" id="about-text-w3x4" class="text-gray-300 leading-relaxed text-sm md:text-base mb-4">
+                            Highly motivated Senior PHP/Drupal Developer with 14+ years of IT experience in Web Development Analysis, Design, Development, Performance Optimization, Configuration Management, Testing, Documentation, and Implementation. Deep expertise across Drupal 6/7/8/9/10/11, PHP 5/7/8, and modern JavaScript frameworks including React, Vue.js, Angular, and Node.js.
+                        </p>
+                        <p data-id="63" id="about-text2-y5z6" class="text-gray-300 leading-relaxed text-sm md:text-base">
+                            Proven track record leading enterprise CMS migrations, headless Drupal architectures, multi-site implementations on Acquia Cloud Platform, and CI/CD pipeline automation. Experienced in cloud platforms (AWS, Azure), Agile Scrum environments, and mentoring development teams as a Drupal Subject Matter Expert (SME).
+                        </p>
+                    </div>
+                </div>
+                <!-- Stats -->
+                <div data-id="64" id="stats-row-a7b8" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14">
+                    <div data-id="65" class="bg-navy-light border border-navy-border rounded-2xl p-6 text-center card-hover">
+                        <div data-id="66" class="text-3xl md:text-4xl font-extrabold gradient-text stat-number" data-count="14">0</div>
+                        <div data-id="67" class="text-xs md:text-sm text-gray-400 mt-2 font-medium">Years Experience</div>
+                    </div>
+                    <div data-id="68" class="bg-navy-light border border-navy-border rounded-2xl p-6 text-center card-hover">
+                        <div data-id="69" class="text-3xl md:text-4xl font-extrabold gradient-text stat-number" data-count="5">0</div>
+                        <div data-id="70" class="text-xs md:text-sm text-gray-400 mt-2 font-medium">Companies</div>
+                    </div>
+                    <div data-id="71" class="bg-navy-light border border-navy-border rounded-2xl p-6 text-center card-hover">
+                        <div data-id="72" class="text-3xl md:text-4xl font-extrabold gradient-text stat-number" data-count="6" data-prefix="Drupal " data-suffix="-11">0</div>
+                        <div data-id="73" class="text-xs md:text-sm text-gray-400 mt-2 font-medium">Drupal Versions</div>
+                    </div>
+                    <div data-id="74" class="bg-navy-light border border-navy-border rounded-2xl p-6 text-center card-hover">
+                        <div data-id="75" class="text-2xl md:text-3xl font-extrabold gradient-text flex items-center justify-center gap-2">
+                            <i data-id="76" data-lucide="map-pin" class="w-5 h-5 md:w-6 md:h-6" style="color: var(--accent-cyan);"></i>
+                        </div>
+                        <div data-id="77" class="text-xs md:text-sm text-gray-400 mt-2 font-medium">Jacksonville, FL</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section data-id="78" id="skills" class="py-20 md:py-28 px-4 md:px-6 lg:px-8 fade-section" style="background: var(--navy-light);">
+            <div data-id="79" class="max-w-6xl mx-auto">
+                <h2 data-id="80" id="skills-heading-c9d0" class="text-2xl md:text-3xl font-bold text-white section-heading section-heading-center text-center mb-10">Technical Skills</h2>
+                <!-- Filters -->
+                <div data-id="81" id="filter-btns-e1f2" class="flex flex-wrap justify-center gap-2 md:gap-3 mb-10">
+                    <button data-id="82" class="filter-btn active" data-filter="all">All</button>
+                    <button data-id="83" class="filter-btn" data-filter="cms">CMS</button>
+                    <button data-id="84" class="filter-btn" data-filter="frontend">Front-End</button>
+                    <button data-id="85" class="filter-btn" data-filter="cloud">Cloud</button>
+                    <button data-id="86" class="filter-btn" data-filter="database">Database</button>
+                    <button data-id="87" class="filter-btn" data-filter="tools">Tools</button>
+                </div>
+                <!-- Skill Groups -->
+                <div data-id="88" id="skill-groups-g3h4" class="space-y-8">
+                    <div data-id="89" class="skill-group" data-category="cms">
+                        <h3 data-id="90" class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i data-id="91" data-lucide="layout-grid" class="w-4 h-4"></i> CMS & Frameworks</h3>
+                        <div data-id="92" class="flex flex-wrap gap-2">
+                            <span data-id="93" class="skill-badge">Drupal 6/7/8/9/10/11</span><span data-id="94" class="skill-badge">WordPress</span><span data-id="95" class="skill-badge">Joomla</span><span data-id="96" class="skill-badge">Zend</span><span data-id="97" class="skill-badge">CodeIgniter</span><span data-id="98" class="skill-badge">CakePHP</span><span data-id="99" class="skill-badge">GoPublish</span><span data-id="100" class="skill-badge">Laravel</span><span data-id="101" class="skill-badge">Symfony</span><span data-id="102" class="skill-badge">Magento 1.x/2.x</span>
+                        </div>
+                    </div>
+                    <div data-id="103" class="skill-group" data-category="cms">
+                        <h3 data-id="104" class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i data-id="105" data-lucide="code-2" class="w-4 h-4"></i> Languages</h3>
+                        <div data-id="106" class="flex flex-wrap gap-2">
+                            <span data-id="107" class="skill-badge">PHP 5/7/8</span><span data-id="108" class="skill-badge">JavaScript</span><span data-id="109" class="skill-badge">Python</span><span data-id="110" class="skill-badge">PL/SQL</span><span data-id="111" class="skill-badge">C#</span><span data-id="112" class="skill-badge">VBScript</span>
+                        </div>
+                    </div>
+                    <div data-id="113" class="skill-group" data-category="frontend">
+                        <h3 data-id="114" class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i data-id="115" data-lucide="palette" class="w-4 h-4"></i> Front-End</h3>
+                        <div data-id="116" class="flex flex-wrap gap-2">
+                            <span data-id="117" class="skill-badge">React.js</span><span data-id="118" class="skill-badge">Vue.js</span><span data-id="119" class="skill-badge">Angular.js</span><span data-id="120" class="skill-badge">Node.js</span><span data-id="121" class="skill-badge">HTML5</span><span data-id="122" class="skill-badge">CSS3</span><span data-id="123" class="skill-badge">SASS/SCSS</span><span data-id="124" class="skill-badge">LESS</span><span data-id="125" class="skill-badge">Bootstrap</span><span data-id="126" class="skill-badge">jQuery</span><span data-id="127" class="skill-badge">AJAX</span><span data-id="128" class="skill-badge">DOJO</span><span data-id="129" class="skill-badge">Backbone.js</span>
+                        </div>
+                    </div>
+                    <div data-id="130" class="skill-group" data-category="frontend">
+                        <h3 data-id="131" class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i data-id="132" data-lucide="layers" class="w-4 h-4"></i> State Management</h3>
+                        <div data-id="133" class="flex flex-wrap gap-2">
+                            <span data-id="134" class="skill-badge">Redux Toolkit</span><span data-id="135" class="skill-badge">Vuex</span><span data-id="136" class="skill-badge">Pinia</span><span data-id="137" class="skill-badge">React Hooks</span>
+                        </div>
+                    </div>
+                    <div data-id="138" class="skill-group" data-category="cloud">
+                        <h3 data-id="139" class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i data-id="140" data-lucide="cloud" class="w-4 h-4"></i> Cloud & DevOps</h3>
+                        <div data-id="141" class="flex flex-wrap gap-2">
+                            <span data-id="142" class="skill-badge">Acquia Cloud</span><span data-id="143" class="skill-badge">Microsoft Azure</span><span data-id="144" class="skill-badge">AWS EC2/EBS/ELB</span><span data-id="145" class="skill-badge">Docker</span><span data-id="146" class="skill-badge">GitLab CI/CD</span><span data-id="147" class="skill-badge">Azure DevOps</span><span data-id="148" class="skill-badge">CircleCI</span><span data-id="149" class="skill-badge">Jenkins</span>
+                        </div>
+                    </div>
+                    <div data-id="150" class="skill-group" data-category="database">
+                        <h3 data-id="151" class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i data-id="152" data-lucide="database" class="w-4 h-4"></i> Databases</h3>
+                        <div data-id="153" class="flex flex-wrap gap-2">
+                            <span data-id="154" class="skill-badge">MySQL</span><span data-id="155" class="skill-badge">Oracle RDBMS</span><span data-id="156" class="skill-badge">MSSQL</span><span data-id="157" class="skill-badge">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div data-id="158" class="skill-group" data-category="tools">
+                        <h3 data-id="159" class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i data-id="160" data-lucide="wrench" class="w-4 h-4"></i> Tools & Version Control</h3>
+                        <div data-id="161" class="flex flex-wrap gap-2">
+                            <span data-id="162" class="skill-badge">Git</span><span data-id="163" class="skill-badge">GitHub</span><span data-id="164" class="skill-badge">Bitbucket</span><span data-id="165" class="skill-badge">GitLab</span><span data-id="166" class="skill-badge">SVN</span><span data-id="167" class="skill-badge">CVS</span><span data-id="168" class="skill-badge">Drush</span><span data-id="169" class="skill-badge">DBeaver</span><span data-id="170" class="skill-badge">JIRA</span><span data-id="171" class="skill-badge">New Relic APM</span>
+                        </div>
+                    </div>
+                    <div data-id="172" class="skill-group" data-category="tools">
+                        <h3 data-id="173" class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i data-id="174" data-lucide="globe" class="w-4 h-4"></i> Web Services</h3>
+                        <div data-id="175" class="flex flex-wrap gap-2">
+                            <span data-id="176" class="skill-badge">RESTful APIs</span><span data-id="177" class="skill-badge">JSON:API</span><span data-id="178" class="skill-badge">SOAP</span><span data-id="179" class="skill-badge">WSDL</span><span data-id="180" class="skill-badge">JAX-WS</span>
+                        </div>
+                    </div>
+                    <div data-id="181" class="skill-group" data-category="tools">
+                        <h3 data-id="182" class="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i data-id="183" data-lucide="test-tubes" class="w-4 h-4"></i> Testing</h3>
+                        <div data-id="184" class="flex flex-wrap gap-2">
+                            <span data-id="185" class="skill-badge">PHPUnit</span><span data-id="186" class="skill-badge">ATDD</span><span data-id="187" class="skill-badge">BDD</span><span data-id="188" class="skill-badge">Cucumber/Gherkin</span><span data-id="189" class="skill-badge">Section 508 Accessibility</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section data-id="190" id="experience" class="py-20 md:py-28 px-4 md:px-6 lg:px-8 fade-section">
+            <div data-id="191" class="max-w-5xl mx-auto">
+                <h2 data-id="192" id="exp-heading-i5j6" class="text-2xl md:text-3xl font-bold text-white section-heading section-heading-center text-center mb-14">Professional Experience</h2>
+                <div data-id="193" class="relative">
+                    <div data-id="194" class="timeline-line"></div>
+
+                    <!-- Job 1 -->
+                    <div data-id="195" class="relative pl-12 md:pl-0 mb-16 md:flex md:items-start">
+                        <div data-id="196" class="timeline-dot"></div>
+                        <div data-id="197" class="hidden md:flex md:w-1/2 md:justify-end md:pr-10">
+                            <div data-id="198" class="text-right">
+                                <p data-id="199" class="text-sm text-purple-400 font-semibold">Sep 2025 – Present</p>
+                                <p data-id="200" class="text-xs text-gray-500">Miami, Florida</p>
+                            </div>
+                        </div>
+                        <div data-id="201" class="md:w-1/2 md:pl-10">
+                            <div data-id="202" class="bg-navy-lighter border border-navy-border rounded-2xl p-5 md:p-6 card-hover">
+                                <div data-id="203" class="flex items-center gap-3 mb-2 flex-wrap">
+                                    <h3 data-id="204" class="text-lg font-bold text-white">PHP Programmer / Developer</h3>
+                                    <span data-id="205" class="current-badge">Current</span>
+                                </div>
+                                <p data-id="206" class="text-sm font-semibold gradient-text mb-1">Carnival Cruise</p>
+                                <p data-id="207" class="text-xs text-gray-500 mb-3 md:hidden">Sep 2025 – Present · Miami, FL</p>
+                                <div data-id="208" class="flex flex-wrap gap-1.5 mb-4">
+                                    <span data-id="209" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">PHP 7/8</span>
+                                    <span data-id="210" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">React.js</span>
+                                    <span data-id="211" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Node.js</span>
+                                    <span data-id="212" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Docker</span>
+                                    <span data-id="213" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Azure</span>
+                                    <span data-id="214" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">MySQL</span>
+                                </div>
+                                <ul data-id="215" class="space-y-2 text-sm text-gray-300">
+                                    <li data-id="216" class="flex gap-2"><i data-id="217" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Develop and maintain PHP 7/8-based web applications supporting internal operations and customer-facing systems</li>
+                                    <li data-id="218" class="flex gap-2"><i data-id="219" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Architected modular React UI components and connected them to PHP backends through REST APIs; applied React hooks for state management</li>
+                                    <li data-id="220" class="flex gap-2"><i data-id="221" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Built Node.js middleware services bridging React front-end and PHP backend; containerized deployments using Docker on Microsoft Azure</li>
+                                    <li data-id="222" class="flex gap-2"><i data-id="223" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Write and optimize SQL queries, stored procedures, and indexes using DBeaver; implement role-based access controls and encryption</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div data-id="224" class="relative pl-12 md:pl-0 mb-16 md:flex md:items-start">
+                        <div data-id="225" class="timeline-dot"></div>
+                        <div data-id="226" class="hidden md:flex md:w-1/2 md:justify-end md:pr-10">
+                            <div data-id="227" class="text-right">
+                                <p data-id="228" class="text-sm text-purple-400 font-semibold">Aug 2021 – Aug 2025</p>
+                                <p data-id="229" class="text-xs text-gray-500">Jacksonville, Florida</p>
+                            </div>
+                        </div>
+                        <div data-id="230" class="md:w-1/2 md:pl-10">
+                            <div data-id="231" class="bg-navy-lighter border border-navy-border rounded-2xl p-5 md:p-6 card-hover">
+                                <h3 data-id="232" class="text-lg font-bold text-white mb-1">Lead Drupal / Acquia Developer</h3>
+                                <p data-id="233" class="text-sm font-semibold gradient-text mb-1">GuideWell Source</p>
+                                <p data-id="234" class="text-xs text-gray-500 mb-3 md:hidden">Aug 2021 – Aug 2025 · Jacksonville, FL</p>
+                                <div data-id="235" class="flex flex-wrap gap-1.5 mb-4">
+                                    <span data-id="236" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Drupal 9/10</span>
+                                    <span data-id="237" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">PHP 7/8</span>
+                                    <span data-id="238" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">React.js</span>
+                                    <span data-id="239" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Redux</span>
+                                    <span data-id="240" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Vue.js</span>
+                                    <span data-id="241" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Acquia Cloud</span>
+                                    <span data-id="242" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">JSON:API</span>
+                                </div>
+                                <ul data-id="243" class="space-y-2 text-sm text-gray-300">
+                                    <li data-id="244" class="flex gap-2"><i data-id="245" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Served as Drupal SME; led Drupal 9→10 core upgrade (10.2.6 to 10.3.6) and Acquia CMS v2 migration with zero downtime</li>
+                                    <li data-id="246" class="flex gap-2"><i data-id="247" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Designed headless Drupal solutions with React front-end layers consuming JSON:API; centralized state with Redux Toolkit</li>
+                                    <li data-id="248" class="flex gap-2"><i data-id="249" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Built multisite architecture on Acquia Cloud Platform and multiple Site Studio components for client requirements</li>
+                                    <li data-id="250" class="flex gap-2"><i data-id="251" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Coached junior developers on Drupal, PHP OOP, and CI/CD; integrated Google APIs (Drive, Docs, Sheets, Gmail) for workflow automation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 3 -->
+                    <div data-id="252" class="relative pl-12 md:pl-0 mb-16 md:flex md:items-start">
+                        <div data-id="253" class="timeline-dot"></div>
+                        <div data-id="254" class="hidden md:flex md:w-1/2 md:justify-end md:pr-10">
+                            <div data-id="255" class="text-right">
+                                <p data-id="256" class="text-sm text-purple-400 font-semibold">Aug 2019 – Aug 2021</p>
+                                <p data-id="257" class="text-xs text-gray-500">New York City, New York</p>
+                            </div>
+                        </div>
+                        <div data-id="258" class="md:w-1/2 md:pl-10">
+                            <div data-id="259" class="bg-navy-lighter border border-navy-border rounded-2xl p-5 md:p-6 card-hover">
+                                <h3 data-id="260" class="text-lg font-bold text-white mb-1">Senior PHP / Drupal Developer</h3>
+                                <p data-id="261" class="text-sm font-semibold gradient-text mb-1">Meredith</p>
+                                <p data-id="262" class="text-xs text-gray-500 mb-3 md:hidden">Aug 2019 – Aug 2021 · New York City, NY</p>
+                                <div data-id="263" class="flex flex-wrap gap-1.5 mb-4">
+                                    <span data-id="264" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">PHP 5/7</span>
+                                    <span data-id="265" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Drupal 8</span>
+                                    <span data-id="266" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">React.js</span>
+                                    <span data-id="267" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Laravel</span>
+                                    <span data-id="268" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Symfony</span>
+                                    <span data-id="269" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Azure</span>
+                                    <span data-id="270" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Magento</span>
+                                </div>
+                                <ul data-id="271" class="space-y-2 text-sm text-gray-300">
+                                    <li data-id="272" class="flex gap-2"><i data-id="273" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Drupal SME during Drupal 7→8 upgrade; led CMS-to-WordPress migration by defining Unified Data Format (UDF) schema</li>
+                                    <li data-id="274" class="flex gap-2"><i data-id="275" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Developed React components for headless/decoupled Drupal builds using JSON:API; managed state with Redux and React hooks</li>
+                                    <li data-id="276" class="flex gap-2"><i data-id="277" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Secured Drupal environments with Azure Key Vault; set up Azure CDN for global content delivery optimization</li>
+                                    <li data-id="278" class="flex gap-2"><i data-id="279" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Performed Section 508 Web Accessibility compliance testing and remediation; developed e-commerce using Magento 1.x/2.x</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 4 -->
+                    <div data-id="280" class="relative pl-12 md:pl-0 mb-16 md:flex md:items-start">
+                        <div data-id="281" class="timeline-dot"></div>
+                        <div data-id="282" class="hidden md:flex md:w-1/2 md:justify-end md:pr-10">
+                            <div data-id="283" class="text-right">
+                                <p data-id="284" class="text-sm text-purple-400 font-semibold">Dec 2017 – Jul 2019</p>
+                                <p data-id="285" class="text-xs text-gray-500">New York City, New York</p>
+                            </div>
+                        </div>
+                        <div data-id="286" class="md:w-1/2 md:pl-10">
+                            <div data-id="287" class="bg-navy-lighter border border-navy-border rounded-2xl p-5 md:p-6 card-hover">
+                                <h3 data-id="288" class="text-lg font-bold text-white mb-1">Senior Frontend / Drupal Developer</h3>
+                                <p data-id="289" class="text-sm font-semibold gradient-text mb-1">UNICEF</p>
+                                <p data-id="290" class="text-xs text-gray-500 mb-3 md:hidden">Dec 2017 – Jul 2019 · New York City, NY</p>
+                                <div data-id="291" class="flex flex-wrap gap-1.5 mb-4">
+                                    <span data-id="292" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">PHP 5/7</span>
+                                    <span data-id="293" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Drupal 8</span>
+                                    <span data-id="294" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Angular.js</span>
+                                    <span data-id="295" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Azure DevOps</span>
+                                    <span data-id="296" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">New Relic</span>
+                                    <span data-id="297" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Python</span>
+                                </div>
+                                <ul data-id="298" class="space-y-2 text-sm text-gray-300">
+                                    <li data-id="299" class="flex gap-2"><i data-id="300" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Developed headless Drupal application with RESTful module and Angular-based UI; implemented Solr search</li>
+                                    <li data-id="301" class="flex gap-2"><i data-id="302" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Integrated New Relic PHP agent to monitor Drupal performance; optimized slow queries and hooks via APM data</li>
+                                    <li data-id="303" class="flex gap-2"><i data-id="304" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Deployed Drupal multisite apps to Azure App Services; integrated Azure DevOps CI/CD pipelines and Azure Blob Storage</li>
+                                    <li data-id="305" class="flex gap-2"><i data-id="306" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Implemented ATDD/BDD test frameworks with Cucumber/Gherkin; performed AEM 6.2 content management</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 5 -->
+                    <div data-id="307" class="relative pl-12 md:pl-0 mb-16 md:flex md:items-start">
+                        <div data-id="308" class="timeline-dot"></div>
+                        <div data-id="309" class="hidden md:flex md:w-1/2 md:justify-end md:pr-10">
+                            <div data-id="310" class="text-right">
+                                <p data-id="311" class="text-sm text-purple-400 font-semibold">Oct 2012 – Aug 2017</p>
+                                <p data-id="312" class="text-xs text-gray-500">India</p>
+                            </div>
+                        </div>
+                        <div data-id="313" class="md:w-1/2 md:pl-10">
+                            <div data-id="314" class="bg-navy-lighter border border-navy-border rounded-2xl p-5 md:p-6 card-hover">
+                                <h3 data-id="315" class="text-lg font-bold text-white mb-1">Middleware Support Engineer</h3>
+                                <p data-id="316" class="text-sm font-semibold gradient-text mb-1">CSC (Client: DHL)</p>
+                                <p data-id="317" class="text-xs text-gray-500 mb-3 md:hidden">Oct 2012 – Aug 2017 · India</p>
+                                <div data-id="318" class="flex flex-wrap gap-1.5 mb-4">
+                                    <span data-id="319" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">IBM WebSphere MQ</span>
+                                    <span data-id="320" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Oracle SQL</span>
+                                    <span data-id="321" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Git</span>
+                                    <span data-id="322" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Unix/Linux</span>
+                                </div>
+                                <ul data-id="323" class="space-y-2 text-sm text-gray-300">
+                                    <li data-id="324" class="flex gap-2"><i data-id="325" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Managed WebSphere MQ/Message Broker on Unix; administered Queue Manager, Queues, Channels, and failover clustering</li>
+                                    <li data-id="326" class="flex gap-2"><i data-id="327" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Developed shell scripts for MQ health monitoring; maintained cron jobs and proactive queue depth monitoring</li>
+                                    <li data-id="328" class="flex gap-2"><i data-id="329" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Led WAR room critical production issue resolution; handled R&D for permanent fixes and knowledge transfer sessions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 6 -->
+                    <div data-id="330" class="relative pl-12 md:pl-0 mb-4 md:flex md:items-start">
+                        <div data-id="331" class="timeline-dot"></div>
+                        <div data-id="332" class="hidden md:flex md:w-1/2 md:justify-end md:pr-10">
+                            <div data-id="333" class="text-right">
+                                <p data-id="334" class="text-sm text-purple-400 font-semibold">Aug 2010 – Sep 2012</p>
+                                <p data-id="335" class="text-xs text-gray-500">India</p>
+                            </div>
+                        </div>
+                        <div data-id="336" class="md:w-1/2 md:pl-10">
+                            <div data-id="337" class="bg-navy-lighter border border-navy-border rounded-2xl p-5 md:p-6 card-hover">
+                                <h3 data-id="338" class="text-lg font-bold text-white mb-1">Associate Testing Engineer</h3>
+                                <p data-id="339" class="text-sm font-semibold gradient-text mb-1">CSC</p>
+                                <p data-id="340" class="text-xs text-gray-500 mb-3 md:hidden">Aug 2010 – Sep 2012 · India</p>
+                                <div data-id="341" class="flex flex-wrap gap-1.5 mb-4">
+                                    <span data-id="342" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Mainframes</span>
+                                    <span data-id="343" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">Certify</span>
+                                    <span data-id="344" class="text-xs px-2 py-0.5 rounded bg-navy-light text-gray-400 border border-navy-border">VBScript</span>
+                                </div>
+                                <ul data-id="345" class="space-y-2 text-sm text-gray-300">
+                                    <li data-id="346" class="flex gap-2"><i data-id="347" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Authored Test Plans; designed and executed manual test cases; utilized Certify automation tool</li>
+                                    <li data-id="348" class="flex gap-2"><i data-id="349" data-lucide="chevron-right" class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5"></i>Developed VBScript macros for test data generation; managed Discounts and Billing testing in LSIT</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section data-id="350" id="education" class="py-20 md:py-28 px-4 md:px-6 lg:px-8 fade-section" style="background: var(--navy-light);">
+            <div data-id="351" class="max-w-4xl mx-auto">
+                <h2 data-id="352" id="edu-heading-k7l8" class="text-2xl md:text-3xl font-bold text-white section-heading section-heading-center text-center mb-12">Education</h2>
+                <div data-id="353" class="bg-navy-lighter border border-navy-border rounded-2xl p-8 md:p-10 card-hover max-w-xl mx-auto text-center">
+                    <div data-id="354" class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5 text-3xl" style="background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(16,185,129,0.15));">
+                        <i data-id="355" data-lucide="graduation-cap" class="w-8 h-8" style="color: var(--accent-cyan);"></i>
+                    </div>
+                    <h3 data-id="356" id="edu-degree-m9n0" class="text-xl md:text-2xl font-bold text-white mb-2">Master of Science in Computer Science — 2017</h3>
+                    <p data-id="357" id="edu-school-o1p2" class="text-base gradient-text font-semibold mb-1">Monroe College · Bronx, New York, USA</p>
+                    <p data-id="358" id="edu-location-q3r4" class="text-sm text-gray-400 flex items-center justify-center gap-1.5">
+                        <i data-id="359" data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                        Bronx, New York, USA
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section data-id="360" id="contact" class="py-20 md:py-28 px-4 md:px-6 lg:px-8 fade-section">
+            <div data-id="361" class="max-w-5xl mx-auto">
+                <h2 data-id="362" id="contact-heading-s5t6" class="text-2xl md:text-3xl font-bold text-white section-heading section-heading-center text-center mb-3">Get In Touch</h2>
+                <p data-id="363" class="text-gray-400 text-center mb-12 text-sm md:text-base">Open to new opportunities and collaborations</p>
+
+                <!-- Contact Cards -->
+                <div data-id="364" class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-14">
+                    <a data-id="365" href="mailto:add.bhujanagaram@gmail.com" class="bg-navy-light border border-navy-border rounded-2xl p-6 text-center card-hover block">
+                        <div data-id="366" class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3" style="background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(16,185,129,0.15));">
+                            <i data-id="367" data-lucide="mail" class="w-5 h-5" style="color: var(--accent-indigo);"></i>
+                        </div>
+                        <p data-id="368" class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Email</p>
+                        <p data-id="369" class="text-sm text-gray-200 font-medium break-all">add.bhujanagaram@gmail.com</p>
+                    </a>
+                    <div data-id="370" class="bg-navy-light border border-navy-border rounded-2xl p-6 text-center card-hover">
+                        <div data-id="371" class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3" style="background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(16,185,129,0.15));">
+                            <i data-id="372" data-lucide="phone" class="w-5 h-5" style="color: var(--accent-cyan);"></i>
+                        </div>
+                        <p data-id="373" class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Phone</p>
+                        <p data-id="374" class="text-sm text-gray-200 font-medium">+1 (201) 233-4302</p>
+                    </div>
+                    <div data-id="375" class="bg-navy-light border border-navy-border rounded-2xl p-6 text-center card-hover">
+                        <div data-id="376" class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3" style="background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(16,185,129,0.15));">
+                            <i data-id="377" data-lucide="map-pin" class="w-5 h-5" style="color: var(--accent-indigo);"></i>
+                        </div>
+                        <p data-id="378" class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Location</p>
+                        <p data-id="379" class="text-sm text-gray-200 font-medium">Jacksonville, FL, USA</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div data-id="380" class="max-w-xl mx-auto">
+                    <form data-id="381" id="contact-form-u7v8" class="space-y-4">
+                        <div data-id="382" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div data-id="383">
+                                <label data-id="384" for="form-name-w9x0" class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5 block">Name</label>
+                                <input data-id="385" id="form-name-w9x0" type="text" placeholder="Your name" required class="w-full px-4 py-3 rounded-xl bg-navy-light border border-navy-border text-gray-200 text-base placeholder-gray-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition" />
+                            </div>
+                            <div data-id="386">
+                                <label data-id="387" for="form-email-y1z2" class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5 block">Email</label>
+                                <input data-id="388" id="form-email-y1z2" type="email" placeholder="Your email" required class="w-full px-4 py-3 rounded-xl bg-navy-light border border-navy-border text-gray-200 text-base placeholder-gray-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition" />
+                            </div>
+                        </div>
+                        <div data-id="389">
+                            <label data-id="390" for="form-msg-a3b4" class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5 block">Message</label>
+                            <textarea data-id="391" id="form-msg-a3b4" rows="5" placeholder="Your message..." required class="w-full px-4 py-3 rounded-xl bg-navy-light border border-navy-border text-gray-200 text-base placeholder-gray-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition resize-none"></textarea>
+                        </div>
+                        <button data-id="392" type="submit" class="btn-gradient w-full justify-center text-base">
+                            <i data-id="393" data-lucide="send" class="w-4 h-4"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer data-id="394" id="footer-c5d6" class="border-t border-navy-border py-8 px-4 md:px-6 lg:px-8" style="background: var(--navy-light);">
+        <div data-id="395" class="max-w-6xl mx-auto text-center">
+            <div data-id="396" class="flex items-center justify-center gap-4 mb-4">
+                <a data-id="397" href="mailto:add.bhujanagaram@gmail.com" class="w-10 h-10 rounded-full flex items-center justify-center bg-navy-lighter border border-navy-border text-gray-400 hover:text-white hover:border-purple-500 transition card-hover" aria-label="Email">
+                    <i data-id="398" data-lucide="linkedin" class="w-4 h-4"></i>
+                </a>
+                <a data-id="399" href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-navy-lighter border border-navy-border text-gray-400 hover:text-white hover:border-purple-500 transition card-hover" aria-label="GitHub">
+                    <i data-id="400" data-lucide="github" class="w-4 h-4"></i>
+                </a>
+                <a data-id="401" href="mailto:add.bhujanagaram@gmail.com" class="w-10 h-10 rounded-full flex items-center justify-center bg-navy-lighter border border-navy-border text-gray-400 hover:text-white hover:border-purple-500 transition card-hover" aria-label="Email">
+                    <i data-id="402" data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+            </div>
+            <p data-id="403" class="text-sm text-gray-500">&copy; 2026 Ram Prashanth Bhujanagaram &middot; Senior PHP/Drupal Developer &middot; Jacksonville, FL</p>
+            <p data-id="404" class="text-xs text-gray-600 mt-2">Made by Copilot</p>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div data-id="405" id="toast-e7f8" class="toast">
+        <div data-id="406" class="flex items-center gap-3">
+            <i data-id="407" data-lucide="check-circle" class="w-5 h-5" style="color: #4ade80;"></i>
+            <span data-id="408" class="text-sm font-medium">Message sent successfully!</span>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // ===== TYPEWRITER =====
+        (function() {
+            const roles = ['Senior PHP Developer', 'Drupal Architect', 'Full-Stack Engineer', 'Acquia Cloud Specialist'];
+            const el = document.getElementById('typewriter-o5p6');
+            let roleIdx = 0, charIdx = 0, deleting = false;
+            function type() {
+                const current = roles[roleIdx];
+                if (!deleting) {
+                    el.textContent = current.substring(0, charIdx + 1);
+                    charIdx++;
+                    if (charIdx === current.length) {
+                        deleting = true;
+                        setTimeout(type, 2000);
+                        return;
+                    }
+                    setTimeout(type, 80);
+                } else {
+                    el.textContent = current.substring(0, charIdx - 1);
+                    charIdx--;
+                    if (charIdx === 0) {
+                        deleting = false;
+                        roleIdx = (roleIdx + 1) % roles.length;
+                        setTimeout(type, 400);
+                        return;
+                    }
+                    setTimeout(type, 40);
+                }
+            }
+            type();
+        })();
+
+        // ===== INTERSECTION OBSERVER FADE-IN =====
+        (function() {
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-section').forEach(function(el) {
+                observer.observe(el);
+            });
+        })();
+
+        // ===== STAT COUNTER ANIMATION =====
+        (function() {
+            let counted = false;
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting && !counted) {
+                        counted = true;
+                        document.querySelectorAll('.stat-number[data-count]').forEach(function(el) {
+                            const target = parseInt(el.dataset.count);
+                            const prefix = el.dataset.prefix || '';
+                            const suffix = el.dataset.suffix || '+';
+                            let current = 0;
+                            const duration = 1500;
+                            const step = Math.ceil(target / (duration / 30));
+                            function count() {
+                                current += step;
+                                if (current >= target) {
+                                    current = target;
+                                    el.textContent = prefix + current + suffix;
+                                    return;
+                                }
+                                el.textContent = prefix + current + suffix;
+                                requestAnimationFrame(count);
+                            }
+                            count();
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+            const statsRow = document.getElementById('stats-row-a7b8');
+            if (statsRow) observer.observe(statsRow);
+        })();
+
+        // ===== NAV ACTIVE LINK ON SCROLL =====
+        (function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link[data-nav]');
+            function updateNav() {
+                let current = '';
+                sections.forEach(function(section) {
+                    const top = section.offsetTop - 100;
+                    if (window.scrollY >= top) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(function(link) {
+                    link.classList.remove('active');
+                    if (link.dataset.nav === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            window.addEventListener('scroll', updateNav, { passive: true });
+        })();
+
+        // ===== MOBILE MENU =====
+        (function() {
+            const menu = document.getElementById('mobile-menu-g7h8');
+            const openBtn = document.getElementById('mobile-menu-btn-e5f6');
+            const closeBtn = document.getElementById('mobile-menu-close-i9j0');
+            openBtn.addEventListener('click', function() { menu.classList.add('open'); });
+            closeBtn.addEventListener('click', function() { menu.classList.remove('open'); });
+            document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+                link.addEventListener('click', function() { menu.classList.remove('open'); });
+            });
+        })();
+
+        // ===== SKILLS FILTER =====
+        (function() {
+            const filterMap = {
+                all: null,
+                cms: 'cms',
+                frontend: 'frontend',
+                cloud: 'cloud',
+                database: 'database',
+                tools: 'tools'
+            };
+            document.querySelectorAll('.filter-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    const filter = btn.dataset.filter;
+                    document.querySelectorAll('.skill-group').forEach(function(group) {
+                        if (filter === 'all' || group.dataset.category === filterMap[filter]) {
+                            group.style.display = '';
+                        } else {
+                            group.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        })();
+
+        // ===== CONTACT FORM =====
+        (function() {
+            const form = document.getElementById('contact-form-u7v8');
+            const toast = document.getElementById('toast-e7f8');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                form.reset();
+                toast.classList.add('show');
+                setTimeout(function() { toast.classList.remove('show'); }, 3500);
+            });
+        })();
+
+        // ===== DOWNLOAD RESUME =====
+        (function() {
+            const resumeText = `RAM PRASHANTH BHUJANAGARAM
+Mobile: +1 (201) 233-4302 | Email: add.bhujanagaram@gmail.com | Location: Jacksonville, FL
+
+PROFESSIONAL SUMMARY
+Highly motivated Senior PHP/Drupal Developer with 14+ years of IT experience in Web Development Analysis, Design, Development, Performance Optimization, Configuration Management, Testing, Documentation, and Implementation. Deep expertise across Drupal 6/7/8/9/10/11, PHP 5/7/8, and modern JavaScript frameworks. Proven track record leading enterprise CMS migrations, headless Drupal architectures, multisite implementations on Acquia Cloud, and CI/CD pipeline automation.
+
+TECHNICAL SKILLS
+Languages: PHP 5/7/8, JavaScript, Python, PL/SQL, C#
+Frameworks/CMS: Drupal 6-11, WordPress, Joomla, Laravel, Symfony, CodeIgniter, CakePHP, Zend, Magento
+Front-End: React.js, Vue.js, Angular.js, Node.js, HTML5, CSS3, SASS/SCSS, jQuery, AJAX, Bootstrap
+Cloud: Acquia Cloud, Microsoft Azure, AWS (EC2, EBS, ELB), Docker
+Databases: MySQL, Oracle, MSSQL, PostgreSQL
+DevOps/Tools: Git, GitLab, GitHub, SVN, Drush, CI/CD, Docker, JIRA, DBeaver, New Relic
+
+PROFESSIONAL EXPERIENCE
+
+Carnival Cruise – Miami, FL | PHP Programmer/Developer | Sep 2025 – Present
+- Develop and maintain PHP 7/8 web applications for internal and customer-facing systems
+- Architected React UI components connected to PHP backends via REST APIs
+- Built Node.js middleware services; containerized deployments with Docker on Azure
+- Optimized SQL queries and implemented secure role-based access controls
+
+GuideWell Source – Jacksonville, FL | Lead Drupal/Acquia Developer | Aug 2021 – Aug 2025
+- Served as Drupal SME; led Drupal 9 to 10 upgrade and Acquia CMS v2 migration
+- Designed headless Drupal solutions with React/JSON:API; state management via Redux Toolkit
+- Built multisite architecture on Acquia Cloud Platform; developed Site Studio components
+- Coached junior developers; integrated Google APIs for workflow automation
+
+Meredith – New York, NY | Senior PHP/Drupal Developer | Aug 2019 – Aug 2021
+- Drupal SME during D7→D8 upgrade; led CMS-to-WordPress migration with UDF schema
+- Developed React components for headless Drupal; secured with Azure Key Vault and CDN
+- Section 508 accessibility compliance; Magento 1.x/2.x e-commerce development
+
+UNICEF – New York, NY | Senior Frontend/Drupal Developer | Dec 2017 – Jul 2019
+- Built headless Drupal with Angular UI; integrated New Relic APM for performance monitoring
+- Deployed to Azure App Services; implemented Azure DevOps CI/CD pipelines
+- ATDD/BDD testing with Cucumber/Gherkin; AEM 6.2 content management
+
+CSC (Client: DHL) – India | Middleware Support Engineer | Oct 2012 – Aug 2017
+- Managed IBM WebSphere MQ/Message Broker on Unix environments
+- Developed shell scripts for health monitoring; led WAR room critical issue resolution
+
+CSC – India | Associate Testing Engineer | Aug 2010 – Sep 2012
+- Authored Test Plans; designed manual test cases; Certify automation tool
+- VBScript macros for test data generation; managed Billing testing
+
+EDUCATION
+Master of Science in Computer Science — 2017
+Monroe College – Bronx, New York, USA`;
+
+            function downloadResume() {
+                const blob = new Blob([resumeText], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Ram_Prashanth_Bhujanagaram_Resume.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+            document.getElementById('download-resume-btn-c3d4').addEventListener('click', downloadResume);
+            document.getElementById('mobile-download-btn-k1l2').addEventListener('click', downloadResume);
+        })();
+
+        // ===== NAVBAR SHADOW ON SCROLL =====
+        (function() {
+            const navbar = document.getElementById('navbar-f8k2');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 10) {
+                    navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+                } else {
+                    navbar.style.boxShadow = 'none';
+                }
+            }, { passive: true });
+        })();
+    </script>
+</body>
+</html>
